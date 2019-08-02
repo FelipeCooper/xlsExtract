@@ -1,6 +1,10 @@
 var fs = require('fs');
 var path = require('path')
-let pastaAtual = path.dirname(__dirname) + '/' + path.basename(__dirname)
+    // Are we running app locally via node?
+const isLocal = typeof process.pkg === 'undefined'
+
+// Build the base path based on current running mode (if packaged, we need the location of executable)
+const pastaAtual = isLocal ? process.cwd() : path.dirname(process.execPath) //PKG PASTA ATUAL
 
 function getFiles(dir, files_) {
     files_ = files_ || [];
@@ -10,7 +14,7 @@ function getFiles(dir, files_) {
         if (fs.statSync(name).isDirectory()) {
             getFiles(name, files_);
         } else {
-            if (path.extname(name) == '.xlsx' && path.basename(name).substr(0, 13) == 'Ficha_tecnica') {
+            if (path.extname(name) == '.xlsx' && path.basename(name).substr(0, 13) == 'Ficha_tecnica') { //Busca todos arquivos 'ficha_tecnica' em xlsx
                 files_.push(path.basename(name));
             }
         }
@@ -35,8 +39,7 @@ function getFiles(dir, files_) {
             fichaSheet.getCell('G5').value
         ))
     }
-    relatorioSheet.columns = [
-        { header: 'Sindico', key: 'sindico', width: 30 },
+    relatorioSheet.columns = [{ header: 'Sindico', key: 'sindico', width: 30, },
         { header: 'Tipo', key: 'tipo', width: 18 },
         { header: 'Cód', key: 'cod', width: 10 },
 

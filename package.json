@@ -1,16 +1,22 @@
 {
-  "name": "NodeXLS",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "exceljs": "^1.14.0",
-    "glob": "^7.1.4"
-  }
+    "name": "NodeXLS",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "bin": "app.js",
+    "pkg": {
+        "targets": [
+            "node10"
+        ]
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "exceljs": "^1.14.0"
+    },
+    "devDependencies": {}
 }
